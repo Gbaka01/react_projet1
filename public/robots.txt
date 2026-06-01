@@ -1,0 +1,19 @@
+User-agent: *
+
+# Autoriser tout le site
+Allow: /
+
+# Bloquer les dossiers techniques
+Disallow: /api/
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
+Disallow: /private
+Disallow: /uploads/tmp/
+
+# Bloquer les paramètres
+Disallow: /*?*
+
+# Sitemap
+Sitemap: https://reseaugbaka.fr/sitemap.xml

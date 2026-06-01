@@ -1,0 +1,59 @@
+.scrollTop{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-size: 22px;
+  z-index: 9999;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+.scrollTop:hover{
+  transform: translateY(-2px);
+}
+footer a:hover svg,
+footer a:focus svg {
+  transform: scale(1.15);
+}
+footer svg {
+  transition: transform 0.2s ease;
+}
+.media-item{
+  width: 30%;
+  border: 1px solid grey;
+  padding: 0.5rem;
+}
+
+.media-item img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Animation */
+.fade-in{
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 800ms ease forwards; /* un peu plus long pour voir */
+  will-change: opacity, transform;
+}
+
+@keyframes fadeInUp{
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.media-item img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.media-item img:hover {
+  transform: scale(1.05);
+}
