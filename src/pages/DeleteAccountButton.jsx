@@ -14,23 +14,34 @@ function DeleteAccountButton() {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete("https://node-projet-deploy.onrender.com/user/delete-account", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      if (!token) {
+        alert("Vous devez être connecté.");
+        navigate("/login");
+        return;
+      }
+
+      await axios.delete(
+        "https://node-projet-deploy.onrender.com/user/delete-account",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       localStorage.removeItem("token");
-      alert("Votre compte a été supprimé.");
+      localStorage.removeItem("userId");
 
+      alert("Votre compte a été supprimé.");
       navigate("/");
     } catch (error) {
+      console.error(error);
       alert("Erreur lors de la suppression du compte.");
     }
   };
 
   return (
-    <button className="btn btn-danger" onClick={handleDeleteAccount}>
+    <button type="button" className="btn btn-danger" onClick={handleDeleteAccount}>
       Supprimer mon compte
     </button>
   );

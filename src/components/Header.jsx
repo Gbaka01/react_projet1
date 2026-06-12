@@ -70,7 +70,7 @@ export default function Header() {
                     <a className="nav-link" onClick={() => navigate('/dashboard')}>Moderation</a>
                   </li>
                       <li className="nav-item">
-                    <a className="nav-link" onClick={() => navigate ('/delete-account')}>Supprimer son compte</a>
+                    <a className="nav-link" onClick={() => navigate ('/profile')}>Supprimer son compte</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" onClick={handleClick}>Se déconnecter</a>

@@ -23,6 +23,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import MyArticles from './pages/MyArticles';
 import EditPage from './pages/EditPage';
 import DeleteAccountButton from './pages/DeleteAccountButton';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -46,8 +47,10 @@ function App() {
       <Route path="/reportmodal" element={ <ReportModal />} />
       <Route path="/myarticles" element={ <MyArticles />} />
       <Route path="/article/edit/:id" element={ <EditPage />} />
-      <Route path="/dashboard" element={<ProtectedRoute allowedRoles={["moderateur", "admin"]}>
       <Route path="/delete-account" element={ <DeleteAccountButton />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/dashboard" element={<ProtectedRoute allowedRoles={["moderateur", "admin"]}>
+
       <ModerationDashboard />
     </ProtectedRoute>} />
     </Routes>
