@@ -20,7 +20,7 @@ export default function Register() {
     setMessages([]) // 🔄 reset avant chaque tentative
     try {
       const res = await axios.post(
-         "https://node-projet-deploy.onrender.com/user/register", // ✅ propre avec .env
+         "https://node-projet-deploy-1.onrender.com/user/register", // ✅ propre avec .env
         formData
       )
       console.log(res.data)

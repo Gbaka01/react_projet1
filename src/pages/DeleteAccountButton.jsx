@@ -21,7 +21,7 @@ function DeleteAccountButton() {
       }
 
       await axios.delete(
-        "https://node-projet-deploy.onrender.com/user/delete-account",
+        "https://node-projet-deploy-1.onrender.com/user/delete-account",
         {
           headers: {
             Authorization: `Bearer ${token}`,

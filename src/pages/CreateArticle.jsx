@@ -24,7 +24,7 @@ const CreateArticle = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "https://node-projet-deploy.onrender.com/article/new",
+        "https://node-projet-deploy-1.onrender.com/article/new",
         formData,
         {
           headers: {

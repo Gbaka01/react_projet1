@@ -35,7 +35,7 @@ const Mediatheque = () => {
     const fetchImages = async () => {
       try {
         const res = await axios.get(
-          "https://node-projet-deploy.onrender.com/image/all",
+          "https://node-projet-deploy-1.onrender.com/image/all",
           {
             headers: { Authorization: `Bearer ${token}` },
             signal: controller.signal,

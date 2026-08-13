@@ -27,7 +27,7 @@ export default function ReNewPassword() {
 
     try {
       const res = await axios.put(
-        "https://node-projet-deploy.onrender.com/user/renew-password", // ✅ sans guillemets autour
+        "https://node-projet-deploy-1.onrender.com/user/renew-password", // ✅ sans guillemets autour
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       )

@@ -20,7 +20,7 @@ const Mesimages = () => {
   async function handleDelete(id) {
     try {
       await axios.delete(
-        `https://node-projet-deploy.onrender.com/image/${id}`,
+        `https://node-projet-deploy-1.onrender.com/image/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setImages((prev) => prev.filter((img) => img._id !== id));
@@ -41,7 +41,7 @@ const Mesimages = () => {
     async function fetchImages() {
       try {
         const res = await axios.get(
-          "https://node-projet-deploy.onrender.com/image/mesimages",
+          "https://node-projet-deploy-1.onrender.com/image/mesimages",
           {
             headers: { Authorization: `Bearer ${token}` },
             signal: controller.signal, // ✅ annule proprement
@@ -88,7 +88,7 @@ const Mesimages = () => {
                 src={
                   img.nom?.startsWith("http")
                     ? img.nom
-                    : `https://node-projet-deploy.onrender.com/uploads/${img.nom}`
+                    : `https://node-projet-deploy-1.onrender.com/uploads/${img.nom}`
                 }
                 alt={img.alt || ""}
                 className="card-img-top"

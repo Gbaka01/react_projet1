@@ -16,7 +16,7 @@ export default function Signaler() {
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const response = await axios.get("https://node-projet-deploy.onrender.com/article/all1");
+        const response = await axios.get("https://node-projet-deploy-1.onrender.com/article/all1");
         setArticles(response.data || []);
       } catch (err) {
         console.error(err);
@@ -30,7 +30,7 @@ export default function Signaler() {
   const handleReportSubmit = async (article, raisons, description) => {
     try {
       const res = await axios.post(
-        "https://node-projet-deploy.onrender.com/report",
+        "https://node-projet-deploy-1.onrender.com/report",
         { article, raisons, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );

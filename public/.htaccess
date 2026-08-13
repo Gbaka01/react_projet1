@@ -1,0 +1,12 @@
+Options -MultiViews
+
+RewriteEngine On
+RewriteBase /
+
+# Laisser Apache servir les vrais fichiers et dossiers
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Envoyer les routes React vers index.html
+RewriteRule ^ index.html [L]

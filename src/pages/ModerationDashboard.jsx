@@ -10,7 +10,7 @@ export default function ModerationDashboard() {
 
   useEffect(() => {
     axios
-      .get("https://node-projet-deploy.onrender.com/report", { // ✅ bonne route
+      .get("https://node-projet-deploy-1.onrender.com/report", { // ✅ bonne route
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -35,7 +35,7 @@ const updateStatus = async (id, status) => {
   try {
     console.log("📡 Mise à jour :", id, status);
     const res = await axios.put(
-      `https://node-projet-deploy.onrender.com/report/${id}`,
+      `https://node-projet-deploy-1.onrender.com/report/${id}`,
       { status },
       { headers: { Authorization: `Bearer ${token}` } }
     );

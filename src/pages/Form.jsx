@@ -22,7 +22,7 @@ export default function Form() {
 
     try {
       const response = await axios.post(
-        "https://node-projet-deploy.onrender.com/image/new",
+        "https://node-projet-deploy-1.onrender.com/image/new",
         formData,
         {
           headers: {

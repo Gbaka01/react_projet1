@@ -20,7 +20,7 @@ const MyArticles = () => {
     async function fetchArticles() {
       try {
         const response = await axios.get(
-          "https://node-projet-deploy.onrender.com/article/my",
+          "https://node-projet-deploy-1.onrender.com/article/my",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setArticles(response.data);
@@ -39,7 +39,7 @@ const MyArticles = () => {
   async function handleDelete(id) {
     try {
       await axios.delete(
-        `https://node-projet-deploy.onrender.com/article/${id}`,
+        `https://node-projet-deploy-1.onrender.com/article/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

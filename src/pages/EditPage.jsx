@@ -15,7 +15,7 @@ export default function EditArticle() {
     async function fetchArticle() {
       try {
         const res = await axios.get(
-          `https://node-projet-deploy.onrender.com/article/${id}`,
+          `https://node-projet-deploy-1.onrender.com/article/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -35,7 +35,7 @@ export default function EditArticle() {
 
     try {
       await axios.put(
-        `https://node-projet-deploy.onrender.com/article/${id}`,
+        `https://node-projet-deploy-1.onrender.com/article/${id}`,
         { titre, contenu },
         { headers: { Authorization: `Bearer ${token}` } }
       );
