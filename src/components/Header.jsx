@@ -1,20 +1,27 @@
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const isLoggedIn = Boolean(localStorage.getItem("token"));
 
-  function handleClick() {
-    localStorage.removeItem("token")
-    navigate("/login") // après déconnexion, redirection vers login
+  function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("nom");
+
+    navigate("/login", { replace: true });
   }
 
-  const isLoggedIn = !!localStorage.getItem("token")
+  const getNavLinkClass = ({ isActive }) =>
+    `nav-link${isActive ? " active" : ""}`;
 
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">GOLI Gore Gbaka</a>
+          <NavLink className="navbar-brand" to="/article/all">
+            GOLI Gore Gbaka
+          </NavLink>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -22,76 +29,152 @@ export default function Header() {
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
-            aria-label="Toggle navigation"
+            aria-label="Afficher ou masquer la navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink
+                  className={getNavLinkClass}
+                  to="/article/all"
+                >
+                  Accueil
+                </NavLink>
+              </li>
 
               <li className="nav-item">
-                <a className="nav-link active" onClick={() => navigate('/article/all')}>Accueil</a>
+                <NavLink
+                  className={getNavLinkClass}
+                  to="/mediatheque"
+                >
+                  Médiathèque
+                </NavLink>
               </li>
-                  <li className="nav-item">
-                <a className="nav-link" onClick={() => navigate('/mediatheque')}>Médiathèque</a>
+
+              <li className="nav-item">
+                <NavLink
+                  className={getNavLinkClass}
+                  to="/mentions"
+                >
+                  Mentions légales
+                </NavLink>
               </li>
-                  <li className="nav-item">
-                <a className="nav-link" onClick={() => navigate('/mentions')}>Mentions legales</a>
-              </li>  
-            
-            
 
-              
-
-              {/* Liens conditionnels selon token */}
               {isLoggedIn ? (
                 <>
-                     <li className="nav-item">
-                <a className="nav-link" onClick={() => navigate('/mesimages')}>Mes images</a>
-              </li>
                   <li className="nav-item">
-                <a className="nav-link" onClick={() => navigate('/')}>Profil</a>
-              </li>
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/mesimages"
+                    >
+                      Mes images
+                    </NavLink>
+                  </li>
+
                   <li className="nav-item">
-                <a className="nav-link" onClick={() => navigate('/myarticles')}>Mes Articles</a>
-              </li>
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/profile"
+                    >
+                      Profil
+                    </NavLink>
+                  </li>
+
                   <li className="nav-item">
-                    <a className="nav-link" onClick={() => navigate('/article/new')}>Publier un article</a>
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/myarticles"
+                    >
+                      Mes articles
+                    </NavLink>
                   </li>
-              
-                   <li className="nav-item">
-                    <a className="nav-link" onClick={() => navigate('/addimage')}>Ajouter une image</a>
-                  </li>
-                       <li className="nav-item">
-                    <a className="nav-link" onClick={() => navigate('/signaler')}>Signaler</a>
-                  </li>
-                        <li className="nav-item">
-                    <a className="nav-link" onClick={() => navigate('/dashboard')}>Moderation</a>
-                  </li>
-                      <li className="nav-item">
-                    <a className="nav-link" onClick={() => navigate ('/profile')}>Supprimer son compte</a>
-                  </li>
+
                   <li className="nav-item">
-                    <a className="nav-link" onClick={handleClick}>Se déconnecter</a>
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/article/new"
+                    >
+                      Publier un article
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/addimage"
+                    >
+                      Ajouter une image
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/signaler"
+                    >
+                      Signaler
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/dashboard"
+                    >
+                      Modération
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/profile"
+                    >
+                      Supprimer son compte
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <button
+                      type="button"
+                      className="nav-link btn btn-link"
+                      onClick={handleLogout}
+                    >
+                      Se déconnecter
+                    </button>
                   </li>
                 </>
               ) : (
                 <>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={() => navigate('/login')}>Se connecter</a>
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/login"
+                    >
+                      Se connecter
+                    </NavLink>
                   </li>
-                  <li className="nav-item ">
-                    <a className="nav-link" onClick={() => navigate('/register')}>S’inscrire</a>
+
+                  <li className="nav-item">
+                    <NavLink
+                      className={getNavLinkClass}
+                      to="/register"
+                    >
+                      S’inscrire
+                    </NavLink>
                   </li>
                 </>
               )}
             </ul>
-
-      
           </div>
         </div>
       </nav>
     </header>
-  )
+  );
 }
