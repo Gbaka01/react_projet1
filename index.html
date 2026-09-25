@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+ 
   <title>GOLI Gore Gbaka | Développeur Web & Artiste</title>
   <meta name="description" content="Après un bac+2 en électronique et microinformatique, GOLI Gore Gbaka se spécialise en développement web et web mobile à Innov-School." />
   <meta name="author" content="GOLI Gore Gbaka" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.reseaugbaka.fr/" />
-
-  <!-- Remplacez par votre vraie icône (à placer dans /public) -->
+ 
+  <!-- Icône : fichier à placer dans /public -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+ 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Réseau Gbaka" />
@@ -25,14 +22,14 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:image" content="https://www.reseaugbaka.fr/gg_1.jpg" />
   <meta property="og:image:alt" content="Portrait de GOLI Gore Gbaka" />
-
+ 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="GOLI Gore Gbaka | Développeur Web & Artiste" />
   <meta name="twitter:description" content="Après un bac+2 en électronique et microinformatique, je me spécialise en développement web et web mobile à Innov-School." />
   <meta name="twitter:image" content="https://www.reseaugbaka.fr/gg_1.jpg" />
   <meta name="twitter:image:alt" content="Portrait de GOLI Gore Gbaka" />
-
+ 
   <!-- Données structurées (même domaine que le canonical : www) -->
   <script type="application/ld+json">
   {
@@ -72,37 +69,28 @@
     ]
   }
   </script>
-
+ 
   <!--
-    Styles du bandeau cookies uniquement.
-    Tout est préfixé "cc-" pour ne pas entrer en conflit avec le CSS de l'app React
-    (.btn, :root, body, * ... appartiennent à l'app).
+    Aucun style ici : le bandeau de consentement (/cookie-consent.js) injecte
+    ses propres styles préfixés « cc- », et l'app React gère le reste.
   -->
-   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #14161a; background: #fff; }
-    main { max-width: 44rem; margin: 0 auto; padding: 3rem 1.5rem 12rem; line-height: 1.65; }
-    h1 { font-size: 2.1rem; margin: 0 0 1rem; }
-    iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
-    button.demo { font: inherit; padding: .6rem 1rem; margin: 1rem 0; cursor: pointer; }
-    footer { text-align: center; padding: 2rem 1rem 10rem; font-size: .9rem; border-top: 1px solid #dcdcdc; }
-    footer a { color: inherit; }
-  </style>
 </head>
-
+ 
 <body>
   <noscript>Ce site nécessite JavaScript pour s’afficher correctement.</noscript>
-
+ 
   <!-- Racine de l'application React -->
   <div id="root"></div>
-
+ 
   <!--
-    Mesure d'audience : chargée UNIQUEMENT après consentement (type="text/plain").
-    Un seul outil est conservé (GA4). Ni gtag.js ni GTM ne doivent être chargés
-    en dehors de ce bloc, sinon le consentement est contourné.
+    Mesure d'audience (GA4) : chargée UNIQUEMENT après consentement
+    « Mesure d'audience » (type="text/plain" + data-cookie-category="audience").
+    Ni gtag.js ni GTM ne doivent être chargés ailleurs (ni dans l'app React),
+    sinon le consentement est contourné.
   -->
-  <script type="text/plain" data-consent="analytics" async
+  <script type="text/plain" data-cookie-category="audience" async
     src="https://www.googletagmanager.com/gtag/js?id=G-XV41CZGP1C"></script>
-  <script type="text/plain" data-consent="analytics">
+  <script type="text/plain" data-cookie-category="audience">
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
@@ -110,20 +98,17 @@
       cookie_expires: 34128000 // 13 mois en secondes
     });
   </script>
-
-  <script>
-    document.getElementById("annee").textContent = new Date().getFullYear();
-    document.getElementById("ajouter").addEventListener("click", function () {
-      var f = document.createElement("iframe");
-      f.setAttribute("data-consent", "tiers");
-      f.setAttribute("data-src", "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ");
-      f.title = "Vidéo ajoutée dynamiquement";
-      document.getElementById("zone").appendChild(f);
-    });
-  </script>
-  <script src="consentement.js" defer></script>
-
+ 
+  <!--
+    Bandeau de consentement : fichier dans /public, servi à la racine.
+    Chemin absolu (/…) pour qu'il soit trouvé sur toutes les routes React.
+    Dans l'app, un lien <a href="#" data-cookie-manage>Gérer les cookies</a>
+    (ou window.SiteConsent.open()) rouvre les réglages.
+  -->
+  <script src="/cookie-consent.js" defer></script>
+ 
   <!-- Point d'entrée Vite / React -->
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
+ 
