@@ -8,13 +8,8 @@ export default function Footer() {
       <div className="container d-flex flex-column flex-md-row fs-5 justify-content-between align-items-center gap-3">
         <p className="mb-0 text-center">
           GOLI Gore Gbaka — © Copyright {annee} ·{" "}
-          <button
-            type="button"
-            className="btn btn-link link-light p-0 align-baseline fs-5"
-            onClick={() => window.RGConsentement?.ouvrir()}
-          >
-            Gérer mes cookies
-          </button>
+ <a href="#" class="text-light" data-cookie-manage
+   onclick="event.preventDefault(); if (window.SiteConsent) SiteConsent.open();">Gérer mes cookies</a>
         </p>
  
         <div className="d-flex align-items-center gap-3">
