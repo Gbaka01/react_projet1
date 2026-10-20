@@ -2,16 +2,33 @@ import { useEffect } from "react";
  
 /*
  * Mentions légales — reseaugbaka.fr (GOLI Gore Gbaka)
- * En vigueur au 25/09/2026 — rédigé à partir d'un modèle LegalPlace.
+ * Dernière mise à jour : 20/10/2026
  */
  
+const SITE = {
+  nom: "Réseau Gbaka",
+  url: "https://reseaugbaka.fr",
+  domaine: "reseaugbaka.fr",
+};
+ 
 const EDITEUR = {
-  nom: "GOLI Gore Gbaka",
-  adresse: "16 rue de Châtillon, 91260 Juvisy-sur-Orge, France",
-  telAffiche: "07 60 29 23 63",
-  telLien: "+33760292363",
+  nom: "Gore Gbaka GOLI",
+  ville: "Juvisy-sur-Orge (91260), France",
   email: "gore.goli@gmail.com",
 };
+ 
+// À ADAPTER : le site tourne sur un serveur Debian personnel.
+// - VPS ou serveur dédié loué chez OVH  → laisser tel quel.
+// - Autre prestataire                   → remplacer par ses coordonnées.
+// - Serveur auto-hébergé à domicile     → l'hébergeur est l'éditeur lui-même.
+const HEBERGEUR = {
+  nom: "OVH SAS",
+  adresse: "2 rue Kellermann, 59100 Roubaix, France",
+  tel: "1007",
+  site: "https://www.ovhcloud.com/fr/",
+};
+ 
+const MISE_A_JOUR = "20 octobre 2026";
  
 const lienExterne = { target: "_blank", rel: "noopener noreferrer" };
  
@@ -19,7 +36,7 @@ export default function Mentions() {
   // Titre de l'onglet propre à cette page
   useEffect(() => {
     const ancienTitre = document.title;
-    document.title = "Mentions légales | Réseau Gbaka";
+    document.title = `Mentions légales | ${SITE.nom}`;
     return () => {
       document.title = ancienTitre;
     };
@@ -41,162 +58,110 @@ export default function Mentions() {
         </h1>
  
         <p>
-          Conformément à l’article 6 de la loi n° 2004-575 du 21 juin 2004 pour
-          la confiance dans l’économie numérique (LCEN), voici l’identité des
+          Conformément à l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour
+          la confiance dans l'économie numérique (LCEN), voici l'identité des
           personnes intervenant dans la réalisation et le suivi du site{" "}
-          <strong>reseaugbaka.fr</strong> (le « Site »).
+          <strong>{SITE.domaine}</strong> (le « Site »). La navigation sur le
+          Site vaut acceptation des présentes mentions légales.
         </p>
  
         <h2 className="h4 mt-4">Édition du site</h2>
-        <p className="mb-2">Le Site est édité à titre personnel par :</p>
-        <address>
-          {EDITEUR.nom}
+        <p>
+          Le Site est un site personnel non professionnel. L'édition et la
+          direction de la publication sont assurées par :
+        </p>
+        <address style={{ fontStyle: "normal" }}>
+          <strong>{EDITEUR.nom}</strong>
           <br />
-          {EDITEUR.adresse}
-          <br />
-          Téléphone :{" "}
-          <a className="link-light" href={`tel:${EDITEUR.telLien}`}>
-            {EDITEUR.telAffiche}
-          </a>
+          {EDITEUR.ville}
           <br />
           E-mail :{" "}
-          <a className="link-light" href={`mailto:${EDITEUR.email}`}>
+          <a href={`mailto:${EDITEUR.email}`} className="link-light">
             {EDITEUR.email}
           </a>
         </address>
-        <p>Directeur de la publication : {EDITEUR.nom}.</p>
+        <p>
+          Conformément à l'article 6-III-2 de la LCEN, l'adresse postale et le
+          numéro de téléphone de l'éditeur ont été communiqués à l'hébergeur.
+        </p>
  
         <h2 className="h4 mt-4">Hébergement</h2>
-        <address>
-          OVH SAS
+        <address style={{ fontStyle: "normal" }}>
+          <strong>{HEBERGEUR.nom}</strong>
           <br />
-          2 rue Kellermann, 59100 Roubaix, France
+          {HEBERGEUR.adresse}
           <br />
-          Téléphone : 1007 (depuis la France) ou +33 9 72 10 10 07
+          Téléphone : {HEBERGEUR.tel}
           <br />
           Site :{" "}
-          <a className="link-light" href="https://www.ovhcloud.com/fr/" {...lienExterne}>
-            www.ovhcloud.com
+          <a href={HEBERGEUR.site} className="link-light" {...lienExterne}>
+            {HEBERGEUR.site.replace(/^https:\/\/(www\.)?/, "").replace(/\/.*$/, "")}
           </a>
         </address>
  
         <h2 className="h4 mt-4">Accès au site</h2>
         <p>
-          Le Site est normalement accessible à tout moment. L’éditeur peut
-          toutefois le suspendre, le limiter ou l’interrompre, notamment pour
-          des mises à jour ou des modifications de son contenu. Il ne pourra
-          être tenu responsable des conséquences éventuelles de cette
-          indisponibilité.
+          Le Site est normalement accessible à tout moment. L'éditeur peut
+          toutefois le suspendre, le limiter ou l'interrompre, notamment pour
+          des mises à jour ou des modifications de son contenu, sans pouvoir
+          être tenu responsable des conséquences de cette indisponibilité.
         </p>
  
         <h2 className="h4 mt-4">Propriété intellectuelle</h2>
         <p>
-          Les textes, images, œuvres et le code du Site sont la propriété de{" "}
-          {EDITEUR.nom}, sauf mention contraire. Toute utilisation,
-          reproduction, diffusion, commercialisation ou modification de tout ou
-          partie du Site sans autorisation expresse est interdite et pourra
-          entraîner des poursuites judiciaires.
+          L'ensemble des contenus du Site (textes, images, code, mise en page)
+          est la propriété de l'éditeur, sauf mention contraire. Toute
+          reproduction, diffusion, modification ou exploitation commerciale,
+          totale ou partielle, sans autorisation écrite préalable est interdite
+          et peut donner lieu à des poursuites. Les contenus publiés par les
+          utilisateurs restent sous leur responsabilité.
         </p>
  
         <h2 className="h4 mt-4">Données personnelles</h2>
         <p>
-          Le responsable du traitement est {EDITEUR.nom} (coordonnées
-          ci-dessus). Les informations que vous envoyez par e-mail ou via un
-          formulaire de contact servent uniquement à vous répondre. Elles ne
-          sont ni vendues ni transmises à des tiers, et sont conservées au
-          maximum 3 ans après notre dernier échange.
+          Les données que vous fournissez sur le Site (par exemple lors de la
+          création d'un compte ou de l'envoi d'un message) sont utilisées
+          uniquement pour le fonctionnement du Site. Elles ne sont ni vendues ni
+          cédées à des tiers, et sont conservées tant que votre compte est
+          actif, puis supprimées.
         </p>
         <p>
-          Conformément au Règlement général sur la protection des données
-          (RGPD, règlement UE 2016/679) et à la loi « Informatique et
-          Libertés » n° 78-17 du 6 janvier 1978, vous disposez d’un droit
-          d’accès, de rectification, d’effacement, d’opposition et de
-          limitation du traitement de vos données. Pour l’exercer, écrivez à{" "}
-          <a className="link-light" href={`mailto:${EDITEUR.email}`}>
+          Conformément au règlement (UE) 2016/679 (RGPD) et à la loi n° 78-17
+          du 6 janvier 1978 relative à l'informatique, aux fichiers et aux
+          libertés, vous disposez d'un droit d'accès, de rectification,
+          d'effacement, de limitation, de portabilité et d'opposition au
+          traitement de vos données. Pour l'exercer, écrivez à{" "}
+          <a href={`mailto:${EDITEUR.email}`} className="link-light">
             {EDITEUR.email}
           </a>
           .
         </p>
         <p>
-          Si vous estimez que vos droits ne sont pas respectés, vous pouvez
-          adresser une réclamation à la{" "}
-          <a className="link-light" href="https://www.cnil.fr/fr/plaintes" {...lienExterne}>
+          Vous pouvez également adresser une réclamation à la{" "}
+          <a
+            href="https://www.cnil.fr/fr/plaintes"
+            className="link-light"
+            {...lienExterne}
+          >
             CNIL
           </a>
           .
         </p>
  
-        <h2 id="cookies" className="h4 mt-4">Cookies</h2>
+        <h2 className="h4 mt-4">Cookies</h2>
         <p>
-          Lors de votre première visite, un bandeau vous demande votre accord.
-          Aucun cookie de mesure d’audience n’est déposé avant votre choix, et
-          refuser est aussi simple qu’accepter. Votre choix est conservé
-          6 mois.
+          Le Site utilise uniquement les cookies strictement nécessaires à son
+          fonctionnement (par exemple le maintien de votre connexion). Ces
+          cookies ne nécessitent pas votre consentement et aucun cookie de
+          mesure d'audience ou publicitaire n'est déposé.
         </p>
  
-        <div className="table-responsive">
-          <table className="table table-dark table-bordered align-top">
-            <thead>
-              <tr>
-                <th>Catégorie</th>
-                <th>Service</th>
-                <th>Finalité</th>
-                <th>Durée</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Essentiels (toujours actifs)</td>
-                <td>Site reseaugbaka.fr (stockage local du navigateur)</td>
-                <td>Mémoriser votre choix concernant les cookies</td>
-                <td>6 mois</td>
-              </tr>
-              <tr>
-                <td>Mesure d’audience (avec votre accord)</td>
-                <td>Google Analytics (Google Ireland Ltd)</td>
-                <td>Statistiques de fréquentation pour améliorer le Site</td>
-                <td>13 mois maximum</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
- 
-        <p>
-          Les données collectées par Google peuvent être transférées hors de
-          l’Union européenne, notamment aux États-Unis. Voir les{" "}
-          <a className="link-light" href="https://policies.google.com/privacy?hl=fr" {...lienExterne}>
-            règles de confidentialité de Google
-          </a>
-          .
-        </p>
-        <p>
-          Vous pouvez modifier ou retirer votre accord à tout moment :{" "}
-          <a
-            className="link-light"
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.SiteConsent?.open();
-            }}
-          >
-            gérer les cookies
-          </a>
-          .
-        </p>
- 
-        <p className="mt-5 mb-0">
-          <em>En vigueur au 25 septembre 2026.</em>
-          <br />
-          <small>
-            Rédigé à partir d’un modèle{" "}
-            <a className="link-light" href="https://www.legalplace.fr/" {...lienExterne}>
-              LegalPlace
-            </a>
-            .
-          </small>
+        <p className="mt-4 mb-0">
+          <em>Dernière mise à jour : {MISE_A_JOUR}.</em>
         </p>
       </div>
     </section>
   );
 }
+ 
  
