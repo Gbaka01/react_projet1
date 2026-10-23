@@ -1,21 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+/* Charge toutes les graisses utilisées (400 à 700), sinon le navigateur simule le gras */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
+/* Le pied de page reste toujours en bas */
+html, body, #root {
+  height: 100%;
+}
 
 body {
-  background-image: url("https://st3.depositphotos.com/1002927/17624/i/450/depositphotos_176243318-stock-photo-man-chooses-friends-social-network.jpg");
+  margin: 0;
+  /* Image locale (dans public/images/), couvrante, sans mosaïque */
+  background: #f4f6f8 url("https://st3.depositphotos.com/1002927/17624/i/450/depositphotos_176243318-stock-photo-man-chooses-friends-social-network.jpg") center / cover no-repeat fixed;
+  /* Police lisible pour le texte courant */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #212529;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root > main {
+  flex: 1;
+}
+
+/* Dancing Script seulement pour le logo et les titres */
+.navbar-brand,
+h1, h2, h3 {
   font-family: "Dancing Script", cursive;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-h1 {
-font-weight: 700;
 }
 
-h2 {
-  font-weight: 600;
+h1 { font-weight: 700; }
+h2 { font-weight: 600; }
+h3 { font-weight: 500; }
+
+/* Fond blanc semi-transparent derrière le contenu pour la lisibilité */
+/* Fond blanc lisible sur toutes les pages, sauf l'accueil qui a son propre style */
+#root > main > *:not(.accueil) {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 1140px;
+  margin: 2rem auto;
 }
 
-h3 {
-  font-weight: 500;
+/* Mobile : "fixed" pose problème sur iOS */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
 }

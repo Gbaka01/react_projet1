@@ -1,55 +1,46 @@
-
-import { useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
-
+import { Link } from "react-router-dom";
+import "../css/accueil.css";
+ 
+const features = [
+  { icon: "👥", title: "Communauté", text: "Retrouvez vos amis et rencontrez de nouveaux membres." },
+  { icon: "💬", title: "Messagerie", text: "Échangez en privé, en toute simplicité." },
+  { icon: "📸", title: "Partage", text: "Publiez vos photos, vos créations et vos idées." },
+];
+ 
+// Le menu (Header) et le pied de page (Footer) viennent de App.jsx
 export default function Accueil() {
-  const navigate = useNavigate()
-  const [nom, setNom] = useState(localStorage.getItem("nom"))
-  const [token, setToken] = useState(localStorage.getItem("token"))
-
-  // 🔄 Mettre à jour quand le localStorage change
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setNom(localStorage.getItem("nom"))
-      setToken(localStorage.getItem("token"))
-    }
-
-    window.addEventListener("storage", handleStorageChange)
-    return () => window.removeEventListener("storage", handleStorageChange)
-  }, [])
-
-  function handleClick() {
-    localStorage.removeItem("token")
-    localStorage.removeItem("nom")
-    setNom(null)
-    setToken(null)
-    navigate("/login") // ✅ redirection vers login
-  }
-
+  const connecte = !!localStorage.getItem("token");
+ 
   return (
-    <>
-       
-      <h1>Accueil</h1>
-      <h2>Bienvenue sur le réseau social GOLI Gore Gbaka</h2>
-
-      {token && nom ? (
-        <>
-          <p>
-            Bonjour, <strong>{nom}</strong> 👋 vous êtes connecté sur le réseau social
-            GOLI Goré Gbaka
-          </p>
-          <button className="btn btn-danger me-2"  onClick={() =>navigate('/renew-password')}>Changer le mot de passe
-
-          </button>
-          <button className="btn btn-primary" onClick={handleClick}>
-            Se déconnecter
-          </button>
-        </>
-      ) : (
-        <button className="btn btn-primary" onClick={() => navigate("/login")}>
-          Se connecter
-        </button>
-      )}
-    </>
-  )
+    <div className="accueil">
+      <section className="acc-hero">
+        <h1>Bienvenue sur le réseau social <span>GOLI Gore Gbaka</span></h1>
+        <p>Partagez, échangez et restez connecté avec votre communauté.</p>
+        <div className="acc-hero-actions">
+          {connecte ? (
+            <>
+              <Link to="/article/all" className="acc-btn acc-btn-lg">Voir les articles</Link>
+              <Link to="/article/new" className="acc-btn acc-btn-lg acc-btn-outline">Publier un article</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/register" className="acc-btn acc-btn-lg">Créer un compte</Link>
+              <Link to="/login" className="acc-btn acc-btn-lg acc-btn-outline">Se connecter</Link>
+            </>
+          )}
+        </div>
+      </section>
+ 
+      <section className="acc-features">
+        {features.map((f) => (
+          <article key={f.title} className="acc-card">
+            <div className="acc-card-icon" aria-hidden="true">{f.icon}</div>
+            <h2>{f.title}</h2>
+            <p>{f.text}</p>
+          </article>
+        ))}
+      </section>
+    </div>
+  );
 }
+ 

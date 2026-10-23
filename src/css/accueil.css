@@ -57,3 +57,37 @@ footer svg {
 .media-item img:hover {
   transform: scale(1.05);
 }
+Accueil · CSS
+/* Styles limités à .accueil (préfixe acc-) pour ne pas écraser Bootstrap */
+.accueil {
+  --acc-primaire: #e85d04;
+  --acc-gris: #555;
+}
+ 
+.accueil .acc-btn {
+  display: inline-block; padding: .8rem 1.6rem; border-radius: 8px;
+  background: var(--acc-primaire); color: #fff; text-decoration: none;
+  border: 2px solid var(--acc-primaire); font-weight: 600; font-size: 1.05rem; transition: .2s;
+}
+.accueil .acc-btn:hover { filter: brightness(1.1); }
+.accueil .acc-btn.acc-btn-outline { background: rgba(255,255,255,.9); color: var(--acc-primaire); }
+ 
+.accueil .acc-hero {
+  text-align: center; padding: 4rem 1.5rem 3rem; max-width: 800px; margin: 2rem auto 0;
+  background: rgba(255,255,255,.9); border-radius: 12px;
+}
+.accueil .acc-hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); margin: 0 0 1rem; line-height: 1.2; }
+.accueil .acc-hero h1 span { color: var(--acc-primaire); }
+.accueil .acc-hero p { color: var(--acc-gris); font-size: 1.15rem; }
+.accueil .acc-hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+ 
+.accueil .acc-features {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem; max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 4rem;
+}
+.accueil .acc-card { background: #fff; border-radius: 12px; padding: 1.5rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+.accueil .acc-card-icon { font-size: 2rem; }
+.accueil .acc-card h2 { font-size: 1.6rem; margin: .5rem 0; }
+.accueil .acc-card p { color: var(--acc-gris); margin: 0; }
+ 
+

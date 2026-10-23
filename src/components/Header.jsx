@@ -44,7 +44,7 @@ export default function Header() {
                   className={getNavLinkClass}
                   to="/article/all"
                 >
-                  Accueil
+                  Mes articles
                 </NavLink>
               </li>
 
