@@ -25,13 +25,13 @@ export default function Footer() {
             Mentions légales
           </Link>{" "}
           ·{" "}
-          <button
-            type="button"
-            className="btn btn-link link-light p-0 align-baseline"
-            onClick={ouvrirCookies}
-          >
-            Gérer mes cookies
-          </button>
+       <button
+  type="button"
+  className="btn btn-link link-light p-0 align-baseline"
+  onClick={() => window.SiteConsent?.open()}
+>
+  Gérer mes cookies
+</button>
         </p>
 
         <nav aria-label="Réseaux sociaux" className="d-flex align-items-center gap-3">

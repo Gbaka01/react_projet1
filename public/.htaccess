@@ -1,12 +1,26 @@
-Options -MultiViews
-
+# --- reseaugbaka.fr - hébergement mutualisé OVH ---
+Options -MultiViews -Indexes
 RewriteEngine On
 RewriteBase /
 
-# Laisser Apache servir les vrais fichiers et dossiers
+# 1) Forcer HTTPS (OVH passe derrière un proxy, d'où X-Forwarded-Proto)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2) Supprimer le www
+RewriteCond %{HTTP_HOST} ^www\.reseaugbaka\.fr$ [NC]
+RewriteRule ^ https://reseaugbaka.fr%{REQUEST_URI} [L,R=301]
+
+# 3) Page 404 personnalisée
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+
+# 4) Protéger les fichiers sensibles (.env, .git, etc.)
+RewriteRule (^|/)\.(?!well-known/) - [F,L]
+RewriteRule ^(node_modules|package(-lock)?\.json)(/|$) - [F,L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
-
-# Envoyer les routes React vers index.html
+RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{2,5}$
 RewriteRule ^ index.html [L]

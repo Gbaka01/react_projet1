@@ -18,7 +18,7 @@ export default function Header() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/article/all">
+          <NavLink className="navbar-brand" to="/">
             GOLI Gore Gbaka
           </NavLink>
 
